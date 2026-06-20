@@ -134,6 +134,39 @@ async def test_create_drive_file_rejects_invalid_base64_content(mock_resolve_fol
     mock_service.files.return_value.create.return_value.execute.assert_not_called()
 
 
+@pytest.mark.asyncio
+async def test_create_drive_file_rejects_content_mime_type_without_base64():
+    """content_mime_type only applies to base64_content uploads."""
+    mock_service = Mock()
+
+    with pytest.raises(ValueError, match="content_mime_type"):
+        await _unwrap(create_drive_file)(
+            service=mock_service,
+            user_google_email="user@example.com",
+            file_name="report.pdf",
+            content="text",
+            content_mime_type="application/pdf",
+        )
+
+    mock_service.files.return_value.create.return_value.execute.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_create_drive_file_rejects_empty_file_url():
+    """An empty fileUrl is treated as no content source and rejected early."""
+    mock_service = Mock()
+
+    with pytest.raises(ValueError, match="content"):
+        await _unwrap(create_drive_file)(
+            service=mock_service,
+            user_google_email="user@example.com",
+            file_name="report.pdf",
+            fileUrl="",
+        )
+
+    mock_service.files.return_value.create.return_value.execute.assert_not_called()
+
+
 # ---------------------------------------------------------------------------
 # get_drive_file_permissions — owners
 # ---------------------------------------------------------------------------

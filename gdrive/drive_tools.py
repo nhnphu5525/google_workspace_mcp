@@ -920,7 +920,7 @@ async def create_drive_file(
         f"[create_drive_file] Invoked. Email: '{user_google_email}', File Name: {file_name}, Folder ID: {folder_id}, fileUrl: {fileUrl}"
     )
 
-    has_existing_content_source = content is not None or fileUrl is not None
+    has_existing_content_source = content is not None or bool(fileUrl)
     if (
         not has_existing_content_source
         and base64_content is None
