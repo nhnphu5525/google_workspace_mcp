@@ -2602,12 +2602,12 @@ async def draft_gmail_message(
             f"{details}"
         )
 
-    # Create a draft instead of sending. Set message.threadId so the draft
-    # appears inline in Gmail's conversation view. In-Reply-To/References
-    # headers alone do not cause Gmail to thread a draft with an existing
-    # conversation; without threadId the draft opens in its own new thread.
+    # Create a draft instead of sending. Gmail requires message.threadId plus
+    # RFC-compliant In-Reply-To/References headers to add a draft to a thread.
+    # If we could not derive the headers, fall back to an unthreaded draft
+    # instead of sending an invalid thread request.
     draft_body = {"message": {"raw": raw_message}}
-    if thread_id:
+    if thread_id and in_reply_to and references:
         draft_body["message"]["threadId"] = thread_id
 
     # Create the draft
