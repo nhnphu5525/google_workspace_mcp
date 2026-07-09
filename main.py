@@ -150,6 +150,11 @@ def resolve_bind_host_for_transport(transport: str) -> str:
             )
         return configured_host
 
+    # Auto-detect container or cloud hosting environments (Render, Heroku, etc.)
+    if os.getenv("PORT") or os.getenv("RENDER") or os.path.exists("/.dockerenv"):
+        logger.info("Cloud or Docker environment detected: binding to 0.0.0.0")
+        return "0.0.0.0"
+
     logger.warning(
         "Legacy streamable-http mode has no MCP-level auth provider; binding to "
         "127.0.0.1 by default. Set WORKSPACE_MCP_HOST explicitly only for trusted "
