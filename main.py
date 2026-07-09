@@ -174,21 +174,13 @@ def validate_streamable_http_auth(transport: str) -> None:
         sys.exit(1)
 
 
-# Single source of truth: service name -> module path.
-# VALID_SERVICES is derived from this mapping.
 SERVICE_MODULES = {
     "gmail": "gmail.gmail_tools",
     "drive": "gdrive.drive_tools",
-    "calendar": "gcalendar.calendar_tools",
     "docs": "gdocs.docs_tools",
     "sheets": "gsheets.sheets_tools",
-    "chat": "gchat.chat_tools",
     "forms": "gforms.forms_tools",
     "slides": "gslides.slides_tools",
-    "tasks": "gtasks.tasks_tools",
-    "contacts": "gcontacts.contacts_tools",
-    "search": "gsearch.search_tools",
-    "appscript": "gappsscript.apps_script_tools",
 }
 VALID_SERVICES = frozenset(SERVICE_MODULES)
 
@@ -563,20 +555,13 @@ def main():
     tool_imports = {
         svc: partial(import_module, mod) for svc, mod in SERVICE_MODULES.items()
     }
-
     tool_icons = {
         "gmail": "📧",
         "drive": "📁",
-        "calendar": "📅",
         "docs": "📄",
         "sheets": "📊",
-        "chat": "💬",
         "forms": "📝",
         "slides": "🖼️",
-        "tasks": "✓",
-        "contacts": "👤",
-        "search": "🔍",
-        "appscript": "📜",
     }
 
     # Determine which tools to import based on arguments

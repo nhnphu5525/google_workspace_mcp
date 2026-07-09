@@ -1,6 +1,6 @@
 {
   "name": "google-workspace-mcp",
-  "description": "Complete Google Workspace integration -- Gmail, Drive, Calendar, Docs, Sheets, Slides, Forms, Tasks, Contacts, Chat, Apps Script, and Custom Search via MCP with workflow guidance.",
+  "description": "Complete Google Workspace integration -- Gmail, Drive, Docs, Sheets, Slides, and Forms via MCP with workflow guidance.",
   "author": {
     "name": "taylorwilsdon"
   },
@@ -21,7 +21,7 @@
     },
     "tools": {
       "title": "Services to enable",
-      "description": "Comma-separated list: gmail, drive, calendar, docs, sheets, chat, forms, slides, tasks, contacts, search, appscript. Leave empty for all. Tip: if typing 'n' closes this prompt, paste from clipboard instead.",
+      "description": "Comma-separated list: gmail, drive, docs, sheets, forms, slides. Leave empty for all. Tip: if typing 'n' closes this prompt, paste from clipboard instead.",
       "type": "string",
       "sensitive": false,
       "required": false

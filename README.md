@@ -10,13 +10,13 @@
 [![PyPI Downloads](https://static.pepy.tech/personalized-badge/workspace-mcp?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=BLUE&left_text=pypi+downloads)](https://pepy.tech/projects/workspace-mcp)
 [![Website](https://img.shields.io/badge/Website-workspacemcp.com-green.svg)](https://workspacemcp.com)
 
-*Full natural language control over Google Calendar, Drive, Gmail, Docs, Sheets, Slides, Forms, Tasks, Contacts, and Chat through all MCP clients, AI assistants and developer tools.*
+*Full natural language control over Google Drive, Gmail, Docs, Sheets, Slides, and Forms through all MCP clients, AI assistants and developer tools.*
 
 *Includes a full featured CLI & Code Mode for use with tools like Claude Code and Codex!*
 
 **The most feature-complete Google Workspace MCP server**, it can do things that Google's own tooling and the built in integrations with Claude and ChatGPT can't even dream of. With Remote OAuth2.1 multi-user support, fine-grained editing tools and the most extensive coverage of any Google Workspace tool in existance, Workspace MCP is in a different class. Offering native OAuth 2.1, stateless mode and external auth server support, it's also the only Workspace MCP you can host for your whole organization centrally & securely!
 
-###### Support for all free Google accounts & Google Workspace plans (Starter, Standard, Plus, Enterprise, Non Profit) with expanded app options like Chat & Spaces. <br/><br /> Interested in a private, managed cloud instance? [That can be arranged.](https://workspacemcp.com/workspace-mcp-cloud)
+###### Support for all free Google accounts & Google Workspace plans (Starter, Standard, Plus, Enterprise, Non Profit). <br/><br /> Interested in a private, managed cloud instance? [That can be arranged.](https://workspacemcp.com/workspace-mcp-cloud)
 
 
 </div>
@@ -92,7 +92,7 @@ Workspace MCP is the single most complete MCP server, the only that integrates a
 
 ## <span style="color:#adbcbc">Features</span>
 
-> **12 services** &ensp;—&ensp; Gmail · Drive · Calendar · Docs · Sheets · Slides · Forms · Chat · Apps Script · Tasks · Contacts · Search
+> **6 services** &ensp;—&ensp; Gmail · Drive · Docs · Sheets · Slides · Forms
 
 <table>
 <tr>
@@ -100,22 +100,10 @@ Workspace MCP is the single most complete MCP server, the only that integrates a
 
 **📧 Gmail** — Complete email management, end-to-end coverage<br>
 **📁 Drive** — File operations with sharing, permissions, Office files, PDFs & images<br>
-**📅 Calendar** — Full event management with advanced features<br>
 **📝 Docs** — Deep, fine-grained editing, formatting & comments<br>
 **📊 Sheets** — Flexible cell management, formatting & conditional rules<br>
 **🖼️ Slides** — Presentation creation, updates & content manipulation<br>
 **📋 Forms** — Creation, publish settings & response management<br>
-**💬 Chat** — Space management, messaging & reactions
-
-</td>
-<td valign="top" width="50%">
-
-**⚡ Apps Script** — Cross-application workflow automation<br>
-<sub>&ensp;Projects · deployments · versions · execution · debugging</sub>
-
-**✅ Tasks** — Task & list management with hierarchy<br>
-**👤 Contacts** — People API with groups & batch operations<br>
-**🔍 Custom Search** — Programmable Search Engine integration
 
 ---
 
@@ -325,15 +313,7 @@ pip install "workspace-mcp[gcs]"
 2. **Create OAuth Credentials** — APIs & Services → Credentials → Create Credentials → OAuth Client ID
    - Choose **Desktop Application** for a public PKCE client (no redirect URIs needed) or **Web Application** for a confidential client
    - Download and note your Client ID and, if issued, Client Secret
-3. **Enable APIs** — APIs & Services → Library, then enable each service:
-
-   | | | | |
-   |:--|:--|:--|:--|
-   | [Calendar](https://console.cloud.google.com/flows/enableapi?apiid=calendar-json.googleapis.com) | [Drive](https://console.cloud.google.com/flows/enableapi?apiid=drive.googleapis.com) | [Gmail](https://console.cloud.google.com/flows/enableapi?apiid=gmail.googleapis.com) | [Docs](https://console.cloud.google.com/flows/enableapi?apiid=docs.googleapis.com) |
-   | [Sheets](https://console.cloud.google.com/flows/enableapi?apiid=sheets.googleapis.com) | [Slides](https://console.cloud.google.com/flows/enableapi?apiid=slides.googleapis.com) | [Forms](https://console.cloud.google.com/flows/enableapi?apiid=forms.googleapis.com) | [Tasks](https://console.cloud.google.com/flows/enableapi?apiid=tasks.googleapis.com) |
-   | [Chat](https://console.cloud.google.com/flows/enableapi?apiid=chat.googleapis.com) | [People](https://console.cloud.google.com/flows/enableapi?apiid=people.googleapis.com) | [Custom Search](https://console.cloud.google.com/flows/enableapi?apiid=customsearch.googleapis.com) | [Apps Script](https://console.cloud.google.com/flows/enableapi?apiid=script.googleapis.com) |
-
-   > **Google Chat needs extra setup.** Enabling the API is not enough — you must also configure a Chat app and use a Workspace account. See [Chat setup](#-google-chat) under the tool list.
+3. **Enable APIs** — APIs & Services → Library, then enable the 9 supported services.
 
 4. **Set Credentials** — see [Environment Variable Reference](#quick-start) above, or:
    ```bash
@@ -346,85 +326,7 @@ pip install "workspace-mcp[gcs]"
 
 </details>
 
-### Google Custom Search Setup
 
-<details open>
-<summary>◆ <b>Custom Search Configuration</b> <sub><sup>← Enable web search capabilities</sup></sub></summary>
-
-<table>
-<tr>
-<td width="33%" align="center">
-
-**1. Create Search Engine**
-```text
-programmablesearchengine.google.com
-/controlpanel/create
-
-→ Configure sites or entire web
-→ Note your Engine ID (cx)
-```
-<sub>[Open Control Panel →](https://programmablesearchengine.google.com/controlpanel/create)</sub>
-
-</td>
-<td width="33%" align="center">
-
-**2. Get API Key**
-```text
-developers.google.com
-/custom-search/v1/overview
-
-→ Create/select project
-→ Enable Custom Search API
-→ Create credentials (API Key)
-```
-<sub>[Get API Key →](https://developers.google.com/custom-search/v1/overview)</sub>
-
-</td>
-<td width="34%" align="center">
-
-**3. Set Variables**
-```bash
-export GOOGLE_PSE_API_KEY=\
-  "your-api-key"
-export GOOGLE_PSE_ENGINE_ID=\
-  "your-engine-id"
-```
-<sub>Configure in environment</sub>
-
-</td>
-</tr>
-<tr>
-<td colspan="3">
-
-<details open>
-<summary>≡ <b>Quick Setup Guide</b> <sub><sup>← Step-by-step instructions</sup></sub></summary>
-
-**Complete Setup Process:**
-
-1. **Create Search Engine** - Visit the [Control Panel](https://programmablesearchengine.google.com/controlpanel/create)
-   - Choose "Search the entire web" or specify sites
-   - Copy the Search Engine ID (looks like: `017643444788157684527:6ivsjbpxpqw`)
-
-2. **Enable API & Get Key** - Visit [Google Developers Console](https://console.cloud.google.com/)
-   - Enable "Custom Search API" in your project
-   - Create credentials → API Key
-   - Restrict key to Custom Search API (recommended)
-
-3. **Configure Environment** - Add to your shell or `.env`:
-   ```bash
-   export GOOGLE_PSE_API_KEY="AIzaSy..."
-   export GOOGLE_PSE_ENGINE_ID="01764344478..."
-   ```
-
-≡ [Full Documentation →](https://developers.google.com/custom-search/v1/overview)
-
-</details>
-
-</td>
-</tr>
-</table>
-
-</details>
 
 ### Start the Server
 
@@ -548,7 +450,7 @@ docker run -e TOOL_TIER=core workspace-mcp
 docker run -e TOOLS="gmail drive calendar" workspace-mcp
 ```
 
-**Available Services**: `gmail` • `drive` • `calendar` • `docs` • `sheets` • `forms` • `tasks` • `contacts` • `chat` • `search`
+**Available Services**: `gmail` • `drive` • `calendar` • `docs` • `sheets` • `forms` • `tasks` • `search`
 
 </details>
 
@@ -756,17 +658,7 @@ cp .env.oauth21 .env
 
 </div>
 
-#### 📅 Google Calendar <sub>[`calendar_tools.py`](gcalendar/calendar_tools.py)</sub>
 
-| <sub>Tool</sub> | <sub>Tier</sub> | <sub>Description</sub> |
-|------|------|-------------|
-| <sub>`list_calendars`</sub> | <sub>Core</sub> | <sub>List accessible calendars</sub> |
-| <sub>`get_events`</sub> | <sub>Core</sub> | <sub>Retrieve events with time range filtering</sub> |
-| <sub>`manage_event`</sub> | <sub>Core</sub> | <sub>Create, update, or delete calendar events</sub> |
-| <sub>`create_calendar`</sub> | <sub>Extended</sub> | <sub>Create a new secondary Google Calendar</sub> |
-| <sub>`query_freebusy`</sub> | <sub>Extended</sub> | <sub>Query free/busy information for calendars</sub> |
-| <sub>`manage_out_of_office`</sub> | <sub>Extended</sub> | <sub>Create, list, update, or delete Out of Office events</sub> |
-| <sub>`manage_focus_time`</sub> | <sub>Extended</sub> | <sub>Create, list, update, or delete Focus Time events</sub> |
 
 #### 📁 Google Drive <sub>[`drive_tools.py`](gdrive/drive_tools.py)</sub>
 
@@ -915,95 +807,7 @@ Saved files expire after 1 hour and are cleaned up automatically.
 | <sub>`list_form_responses`</sub> | <sub>Extended</sub> | <sub>List all responses with pagination</sub> |
 | <sub>`batch_update_form`</sub> | <sub>Complete</sub> | <sub>Apply batch updates (questions, settings)</sub> |
 
-#### ✓ Google Tasks <sub>[`tasks_tools.py`](gtasks/tasks_tools.py)</sub>
 
-| <sub>Tool</sub> | <sub>Tier</sub> | <sub>Description</sub> |
-|------|------|-------------|
-| <sub>`list_tasks`</sub> | <sub>Core</sub> | <sub>List tasks with filtering</sub> |
-| <sub>`get_task`</sub> | <sub>Core</sub> | <sub>Retrieve task details</sub> |
-| <sub>`manage_task`</sub> | <sub>Core</sub> | <sub>Create, update, delete, or move tasks</sub> |
-| <sub>`list_task_lists`</sub> | <sub>Complete</sub> | <sub>List task lists</sub> |
-| <sub>`get_task_list`</sub> | <sub>Complete</sub> | <sub>Get task list details</sub> |
-| <sub>`manage_task_list`</sub> | <sub>Complete</sub> | <sub>Create, update, delete task lists, or clear completed tasks</sub> |
-
-#### 👤 Google Contacts <sub>[`contacts_tools.py`](gcontacts/contacts_tools.py)</sub>
-
-| <sub>Tool</sub> | <sub>Tier</sub> | <sub>Description</sub> |
-|------|------|-------------|
-| <sub>`search_contacts`</sub> | <sub>Core</sub> | <sub>Search contacts by name, email, phone</sub> |
-| <sub>`get_contact`</sub> | <sub>Core</sub> | <sub>Retrieve detailed contact info</sub> |
-| <sub>`list_contacts`</sub> | <sub>Core</sub> | <sub>List contacts with pagination</sub> |
-| <sub>`manage_contact`</sub> | <sub>Core</sub> | <sub>Create, update, or delete contacts</sub> |
-| <sub>`list_contact_groups`</sub> | <sub>Extended</sub> | <sub>List contact groups/labels</sub> |
-| <sub>`get_contact_group`</sub> | <sub>Extended</sub> | <sub>Get group details with members</sub> |
-| <sub>`manage_contacts_batch`</sub> | <sub>Complete</sub> | <sub>Batch create, update, or delete contacts</sub> |
-| <sub>`manage_contact_group`</sub> | <sub>Complete</sub> | <sub>Create, update, delete groups, or modify membership</sub> |
-
-#### 💬 Google Chat <sub>[`chat_tools.py`](gchat/chat_tools.py)</sub>
-
-| <sub>Tool</sub> | <sub>Tier</sub> | <sub>Description</sub> |
-|------|------|-------------|
-| <sub>`list_spaces`</sub> | <sub>Extended</sub> | <sub>List chat spaces/rooms</sub> |
-| <sub>`get_messages`</sub> | <sub>Core</sub> | <sub>Retrieve space messages</sub> |
-| <sub>`send_message`</sub> | <sub>Core</sub> | <sub>Send messages to spaces</sub> |
-| <sub>`search_messages`</sub> | <sub>Core</sub> | <sub>Search across chat history</sub> |
-| <sub>`create_reaction`</sub> | <sub>Core</sub> | <sub>Add emoji reaction to a message</sub> |
-| <sub>`download_chat_attachment`</sub> | <sub>Extended</sub> | <sub>Download attachment from a chat message</sub> |
-
-<details>
-<summary>💬 <b>Chat setup — required before any Chat tool works</b></summary>
-
-Unlike other Workspace services, **enabling the Chat API is not enough** — the Chat API refuses every request until you configure a Chat app, and it only works with Google Workspace accounts. Two extra steps are required:
-
-**1. Configure the Chat app**
-
-Enabling `chat.googleapis.com` alone causes every Chat tool to fail. You must also complete the **Configuration** tab so the API has an app identity to attach requests to:
-
-- Open [Chat API → Configuration](https://console.cloud.google.com/apis/api/chat.googleapis.com/hangouts-chat) (APIs & Services → Enabled APIs → Google Chat API → **Configuration**)
-- Fill in the three required fields under **Application info**:
-  - **App name** — e.g. `Workspace MCP` (up to 25 characters)
-  - **Avatar URL** — any HTTPS URL to a square PNG/JPEG (e.g. `https://developers.google.com/chat/images/quickstart-app-avatar.png`)
-  - **Description** — e.g. `Workspace MCP` (up to 40 characters)
-- Click **Save**
-
-> This server authenticates **as the signed-in user** (user OAuth), not as a bot. You do **not** need to enable interactive features, create a service account, or publish the app — the Configuration form above is the only Chat-specific setup required.
-
-**2. Use a Google Workspace account**
-
-The Chat API is **not available to personal `@gmail.com` accounts**. Configuring it with one returns:
-
-```text
-Google Chat API is only available to Google Workspace users.
-```
-
-Sign in with a Business/Enterprise Google Workspace account (the same account you pass as `user_google_email`).
-
-The required scopes (`chat.spaces.readonly`, `chat.messages.readonly`, `chat.messages`, `chat.spaces`) are requested automatically during the OAuth flow — no manual scope configuration is needed.
-
-<sub>[Configure the Chat API →](https://developers.google.com/workspace/chat/configure-chat-api) · [User authentication →](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)</sub>
-
-</details>
-
-#### 🔍 Google Custom Search <sub>[`search_tools.py`](gsearch/search_tools.py)</sub>
-
-| <sub>Tool</sub> | <sub>Tier</sub> | <sub>Description</sub> |
-|------|------|-------------|
-| <sub>`search_custom`</sub> | <sub>Core</sub> | <sub>Perform web searches (supports site restrictions via sites parameter)</sub> |
-| <sub>`get_search_engine_info`</sub> | <sub>Complete</sub> | <sub>Retrieve search engine metadata</sub> |
-
-#### ⚡ Google Apps Script <sub>[`apps_script_tools.py`](gappsscript/apps_script_tools.py)</sub>
-
-| <sub>Tool</sub> | <sub>Tier</sub> | <sub>Description</sub> |
-|------|------|-------------|
-| <sub>`list_script_projects`</sub> | <sub>Core</sub> | <sub>List accessible Apps Script projects</sub> |
-| <sub>`get_script_project`</sub> | <sub>Core</sub> | <sub>Get complete project with all files</sub> |
-| <sub>`get_script_content`</sub> | <sub>Core</sub> | <sub>Retrieve specific file content</sub> |
-| <sub>`create_script_project`</sub> | <sub>Core</sub> | <sub>Create new standalone or bound project</sub> |
-| <sub>`update_script_content`</sub> | <sub>Core</sub> | <sub>Update or create script files</sub> |
-| <sub>`run_script_function`</sub> | <sub>Core</sub> | <sub>Execute function with parameters</sub> |
-| <sub>`list_deployments`</sub> | <sub>Extended</sub> | <sub>List all project deployments</sub> |
-| <sub>`manage_deployment`</sub> | <sub>Extended</sub> | <sub>Create, update, or delete script deployments</sub> |
-| <sub>`list_script_processes`</sub> | <sub>Extended</sub> | <sub>View recent executions and status</sub> |
 
 <sub>
 

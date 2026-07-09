@@ -13,10 +13,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 
 from auth.scopes import (
     BASE_SCOPES,
-    CALENDAR_READONLY_SCOPE,
-    CALENDAR_SCOPE,
-    CONTACTS_READONLY_SCOPE,
-    CONTACTS_SCOPE,
     DRIVE_FILE_SCOPE,
     DRIVE_READONLY_SCOPE,
     DRIVE_SCOPE,
@@ -176,15 +172,9 @@ class TestHasRequiredScopes:
         """Narrower scope should not satisfy broader scope."""
         assert not has_required_scopes([DRIVE_READONLY_SCOPE], [DRIVE_SCOPE])
 
-    # Other hierarchies
-    def test_calendar_covers_readonly(self):
-        assert has_required_scopes([CALENDAR_SCOPE], [CALENDAR_READONLY_SCOPE])
 
     def test_sheets_write_covers_readonly(self):
         assert has_required_scopes([SHEETS_WRITE_SCOPE], [SHEETS_READONLY_SCOPE])
-
-    def test_contacts_covers_readonly(self):
-        assert has_required_scopes([CONTACTS_SCOPE], [CONTACTS_READONLY_SCOPE])
 
     # Mixed: some exact, some via hierarchy
     def test_mixed_exact_and_hierarchy(self):
@@ -213,7 +203,7 @@ class TestGranularPermissionsScopes:
 
     def test_permissions_mode_returns_base_plus_permission_scopes(self):
         set_permissions({"gmail": "send", "drive": "readonly"})
-        scopes = get_scopes_for_tools(["calendar"])  # ignored in permissions mode
+        scopes = get_scopes_for_tools(["gmail"])  # ignored in permissions mode
 
         expected = set(BASE_SCOPES)
         expected.update(get_scopes_for_permission("gmail", "send"))

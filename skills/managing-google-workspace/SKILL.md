@@ -1,12 +1,12 @@
 ---
 name: managing-google-workspace
 description: >
-  Manages Google Workspace operations across 12 services (Gmail, Drive, Calendar, Docs, Sheets, Slides, Forms, Tasks, Contacts, Chat, Apps Script, Custom Search).
-  Supports MCP tools or CLI via uvx workspace-mcp --cli. Provides tool routing, workflows, and parameter guidance for 114 tools.
+  Manages Google Workspace operations across 6 services (Gmail, Drive, Docs, Sheets, Slides, Forms).
+  Supports MCP tools or CLI via uvx workspace-mcp --cli. Provides tool routing, workflows, and parameter guidance.
   Triggers for "check my email", "find a file", "schedule a meeting", "update the spreadsheet", "share a doc",
-  "create a presentation", "add a task", "look up a contact", or any mention of Google Workspace services.
-allowed-tools: Bash(uvx workspace-mcp *)
-user-invocable: false
+  "create a presentation", "add a task", or any mention of Google Workspace services.
+  Allowed-tools: Bash(uvx workspace-mcp *)
+  User-invocable: false
 ---
 
 # Google Workspace -- Tool Router
@@ -105,18 +105,6 @@ For parameters: [references/gmail.md](references/gmail.md)
 | Import file to Google Doc | `import_to_google_doc` |
 
 For parameters: [references/drive.md](references/drive.md)
-
-### Google Calendar
-
-| Task | Tool |
-|------|------|
-| List calendars | `list_calendars` |
-| Get events | `get_events` |
-| Create/update/delete event | `manage_event` |
-| Check availability | `query_freebusy` |
-
-For parameters: [references/calendar.md](references/calendar.md)
-
 ### Google Docs
 
 | Task | Tool |
@@ -185,74 +173,6 @@ For parameters: [references/slides.md](references/slides.md)
 
 For parameters: [references/forms.md](references/forms.md)
 
-### Google Tasks
-
-| Task | Tool |
-|------|------|
-| List task lists | `list_task_lists` |
-| Get task list | `get_task_list` |
-| Manage task list (CRUD) | `manage_task_list` |
-| List tasks | `list_tasks` |
-| Get task | `get_task` |
-| Manage task (CRUD/move) | `manage_task` |
-
-For parameters: [references/tasks.md](references/tasks.md)
-
-### Google Contacts
-
-| Task | Tool |
-|------|------|
-| Search contacts | `search_contacts` |
-| Get contact | `get_contact` |
-| Manage contact (CRUD) | `manage_contact` |
-| Batch manage contacts | `manage_contacts_batch` |
-| List contact groups | `list_contact_groups` |
-| Get contact group | `get_contact_group` |
-| Manage contact group | `manage_contact_group` |
-| List all contacts | `list_contacts` |
-
-For parameters: [references/contacts.md](references/contacts.md)
-
-### Google Chat
-
-| Task | Tool |
-|------|------|
-| List spaces | `list_spaces` |
-| Get messages | `get_messages` |
-| Search messages | `search_messages` |
-| Send message | `send_message` |
-| React to message | `create_reaction` |
-| Download attachment | `download_chat_attachment` |
-
-For parameters: [references/chat.md](references/chat.md)
-
-### Google Apps Script
-
-| Task | Tool |
-|------|------|
-| List projects | `list_script_projects` |
-| Get project | `get_script_project` |
-| Create project | `create_script_project` |
-| Delete project | `delete_script_project` |
-| Get file content | `get_script_content` |
-| Update file content | `update_script_content` |
-| Run function | `run_script_function` |
-| Generate trigger code | `generate_trigger_code` |
-| Manage deployments | `manage_deployment` / `list_deployments` |
-| Versions | `create_version` / `get_version` / `list_versions` |
-| Execution metrics | `get_script_metrics` |
-| Process history | `list_script_processes` |
-
-For parameters: [references/apps-script.md](references/apps-script.md)
-
-### Google Custom Search
-
-| Task | Tool |
-|------|------|
-| Web search | `search_custom` |
-| Get search engine info | `get_search_engine_info` |
-
-For parameters: [references/search.md](references/search.md)
 
 ### Auth
 

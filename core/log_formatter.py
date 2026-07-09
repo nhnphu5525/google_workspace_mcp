@@ -81,19 +81,13 @@ class EnhancedLogFormatter(logging.Formatter):
             "core.utils": "[UTILS]",
             "auth.google_auth": "[OAUTH]",
             "auth.credential_store": "[CREDS]",
-            "gcalendar.calendar_tools": "[CALENDAR]",
             "gdrive.drive_tools": "[DRIVE]",
             "gmail.gmail_tools": "[GMAIL]",
             "gdocs.docs_tools": "[DOCS]",
             "gsheets.sheets_tools": "[SHEETS]",
-            "gchat.chat_tools": "[CHAT]",
             "gforms.forms_tools": "[FORMS]",
             "gslides.slides_tools": "[SLIDES]",
-            "gtasks.tasks_tools": "[TASKS]",
-            "gsearch.search_tools": "[SEARCH]",
             "auth.service_decorator": "[TOOL]",
-            "gcontacts.contacts_tools": "[CONTACTS]",
-            "gappsscript.apps_script_tools": "[APPSCRIPT]",
         }
 
         return ascii_prefixes.get(logger_name, f"[{level_name}]")

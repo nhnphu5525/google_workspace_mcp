@@ -39,31 +39,13 @@ from auth.scopes import (
     DRIVE_FILE_SCOPE,
     DOCS_READONLY_SCOPE,
     DOCS_WRITE_SCOPE,
-    CALENDAR_SCOPE,
-    CALENDAR_READONLY_SCOPE,
-    CALENDAR_EVENTS_SCOPE,
     SHEETS_READONLY_SCOPE,
     SHEETS_WRITE_SCOPE,
-    CHAT_READONLY_SCOPE,
-    CHAT_WRITE_SCOPE,
-    CHAT_SPACES_SCOPE,
-    CHAT_SPACES_READONLY_SCOPE,
     FORMS_BODY_SCOPE,
     FORMS_BODY_READONLY_SCOPE,
     FORMS_RESPONSES_READONLY_SCOPE,
     SLIDES_SCOPE,
     SLIDES_READONLY_SCOPE,
-    TASKS_SCOPE,
-    TASKS_READONLY_SCOPE,
-    CONTACTS_SCOPE,
-    CONTACTS_READONLY_SCOPE,
-    CUSTOM_SEARCH_SCOPE,
-    SCRIPT_PROJECTS_SCOPE,
-    SCRIPT_PROJECTS_READONLY_SCOPE,
-    SCRIPT_DEPLOYMENTS_SCOPE,
-    SCRIPT_DEPLOYMENTS_READONLY_SCOPE,
-    SCRIPT_EXTERNAL_REQUEST_SCOPE,
-    SCRIPT_SCRIPTAPP_SCOPE,
     has_required_scopes,
 )
 
@@ -548,18 +530,8 @@ SCOPE_GROUPS = {
     # Docs scopes
     "docs_read": DOCS_READONLY_SCOPE,
     "docs_write": DOCS_WRITE_SCOPE,
-    # Calendar scopes
-    "calendar": CALENDAR_SCOPE,
-    "calendar_read": CALENDAR_READONLY_SCOPE,
-    "calendar_events": CALENDAR_EVENTS_SCOPE,
-    # Sheets scopes
     "sheets_read": SHEETS_READONLY_SCOPE,
     "sheets_write": SHEETS_WRITE_SCOPE,
-    # Chat scopes
-    "chat_read": CHAT_READONLY_SCOPE,
-    "chat_write": CHAT_WRITE_SCOPE,
-    "chat_spaces": CHAT_SPACES_SCOPE,
-    "chat_spaces_readonly": CHAT_SPACES_READONLY_SCOPE,
     # Forms scopes
     "forms": FORMS_BODY_SCOPE,
     "forms_read": FORMS_BODY_READONLY_SCOPE,
@@ -567,22 +539,6 @@ SCOPE_GROUPS = {
     # Slides scopes
     "slides": SLIDES_SCOPE,
     "slides_read": SLIDES_READONLY_SCOPE,
-    # Tasks scopes
-    "tasks": TASKS_SCOPE,
-    "tasks_read": TASKS_READONLY_SCOPE,
-    # Contacts scopes
-    "contacts": CONTACTS_SCOPE,
-    "contacts_read": CONTACTS_READONLY_SCOPE,
-    # Custom Search scope
-    "customsearch": CUSTOM_SEARCH_SCOPE,
-    # Apps Script scopes
-    "script_readonly": SCRIPT_PROJECTS_READONLY_SCOPE,
-    "script_projects": SCRIPT_PROJECTS_SCOPE,
-    "script_full": SCRIPT_PROJECTS_SCOPE,
-    "script_deployments": SCRIPT_DEPLOYMENTS_SCOPE,
-    "script_deployments_readonly": SCRIPT_DEPLOYMENTS_READONLY_SCOPE,
-    "script_run": SCRIPT_EXTERNAL_REQUEST_SCOPE,
-    "script_scriptapp": SCRIPT_SCRIPTAPP_SCOPE,
 }
 
 

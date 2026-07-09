@@ -26,33 +26,15 @@ from auth.scopes import (
     DRIVE_READONLY_SCOPE,
     DRIVE_FILE_SCOPE,
     DRIVE_SCOPE,
-    CALENDAR_READONLY_SCOPE,
-    CALENDAR_EVENTS_SCOPE,
-    CALENDAR_SCOPE,
     DOCS_READONLY_SCOPE,
     DOCS_WRITE_SCOPE,
     SHEETS_READONLY_SCOPE,
     SHEETS_WRITE_SCOPE,
-    CHAT_READONLY_SCOPE,
-    CHAT_WRITE_SCOPE,
-    CHAT_SPACES_SCOPE,
-    CHAT_SPACES_READONLY_SCOPE,
     FORMS_BODY_SCOPE,
     FORMS_BODY_READONLY_SCOPE,
     FORMS_RESPONSES_READONLY_SCOPE,
     SLIDES_SCOPE,
     SLIDES_READONLY_SCOPE,
-    TASKS_SCOPE,
-    TASKS_READONLY_SCOPE,
-    CONTACTS_SCOPE,
-    CONTACTS_READONLY_SCOPE,
-    CUSTOM_SEARCH_SCOPE,
-    SCRIPT_PROJECTS_SCOPE,
-    SCRIPT_PROJECTS_READONLY_SCOPE,
-    SCRIPT_DEPLOYMENTS_SCOPE,
-    SCRIPT_DEPLOYMENTS_READONLY_SCOPE,
-    SCRIPT_PROCESSES_READONLY_SCOPE,
-    SCRIPT_METRICS_SCOPE,
 )
 
 logger = logging.getLogger(__name__)
@@ -72,10 +54,6 @@ SERVICE_PERMISSION_LEVELS: Dict[str, List[Tuple[str, List[str]]]] = {
         ("readonly", [DRIVE_READONLY_SCOPE]),
         ("full", [DRIVE_SCOPE, DRIVE_FILE_SCOPE]),
     ],
-    "calendar": [
-        ("readonly", [CALENDAR_READONLY_SCOPE]),
-        ("full", [CALENDAR_SCOPE, CALENDAR_EVENTS_SCOPE]),
-    ],
     "docs": [
         ("readonly", [DOCS_READONLY_SCOPE, DRIVE_READONLY_SCOPE]),
         ("full", [DOCS_WRITE_SCOPE, DRIVE_READONLY_SCOPE, DRIVE_FILE_SCOPE]),
@@ -83,10 +61,6 @@ SERVICE_PERMISSION_LEVELS: Dict[str, List[Tuple[str, List[str]]]] = {
     "sheets": [
         ("readonly", [SHEETS_READONLY_SCOPE, DRIVE_READONLY_SCOPE]),
         ("full", [SHEETS_WRITE_SCOPE, DRIVE_READONLY_SCOPE]),
-    ],
-    "chat": [
-        ("readonly", [CHAT_READONLY_SCOPE, CHAT_SPACES_READONLY_SCOPE]),
-        ("full", [CHAT_WRITE_SCOPE, CHAT_SPACES_SCOPE]),
     ],
     "forms": [
         ("readonly", [FORMS_BODY_READONLY_SCOPE, FORMS_RESPONSES_READONLY_SCOPE]),
@@ -96,51 +70,12 @@ SERVICE_PERMISSION_LEVELS: Dict[str, List[Tuple[str, List[str]]]] = {
         ("readonly", [SLIDES_READONLY_SCOPE]),
         ("full", [SLIDES_SCOPE]),
     ],
-    "tasks": [
-        ("readonly", [TASKS_READONLY_SCOPE]),
-        ("manage", [TASKS_SCOPE]),
-        ("full", []),
-    ],
-    "contacts": [
-        ("readonly", [CONTACTS_READONLY_SCOPE]),
-        ("full", [CONTACTS_SCOPE]),
-    ],
-    "search": [
-        ("readonly", [CUSTOM_SEARCH_SCOPE]),
-        ("full", [CUSTOM_SEARCH_SCOPE]),
-    ],
-    "appscript": [
-        (
-            "readonly",
-            [
-                SCRIPT_PROJECTS_READONLY_SCOPE,
-                SCRIPT_DEPLOYMENTS_READONLY_SCOPE,
-                SCRIPT_PROCESSES_READONLY_SCOPE,
-                SCRIPT_METRICS_SCOPE,
-                DRIVE_READONLY_SCOPE,
-            ],
-        ),
-        (
-            "full",
-            [
-                SCRIPT_PROJECTS_SCOPE,
-                SCRIPT_DEPLOYMENTS_SCOPE,
-                SCRIPT_PROCESSES_READONLY_SCOPE,
-                SCRIPT_METRICS_SCOPE,
-                DRIVE_FILE_SCOPE,
-            ],
-        ),
-    ],
 }
 
 # Actions denied at specific permission levels.
 # Maps service -> level -> frozenset of denied action names.
 # Levels not listed here (or services without entries) deny nothing.
-SERVICE_DENIED_ACTIONS: Dict[str, Dict[str, FrozenSet[str]]] = {
-    "tasks": {
-        "manage": frozenset({"delete", "clear_completed"}),
-    },
-}
+SERVICE_DENIED_ACTIONS: Dict[str, Dict[str, FrozenSet[str]]] = {}
 
 
 def is_action_denied(service: str, action: str) -> bool:

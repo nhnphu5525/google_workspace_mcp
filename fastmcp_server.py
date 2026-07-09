@@ -147,30 +147,21 @@ set_transport_mode("streamable-http")
 # Import all tool modules to register their @server.tool() decorators
 import gmail.gmail_tools
 import gdrive.drive_tools
-import gcalendar.calendar_tools
 import gdocs.docs_tools
 import gsheets.sheets_tools
-import gchat.chat_tools
 import gforms.forms_tools
 import gslides.slides_tools
-import gtasks.tasks_tools
-import gsearch.search_tools
 
 # Configure tool registration
 wrap_server_tool_method(server)
 
-# Enable all tools and services by default
 all_services = [
     "gmail",
     "drive",
-    "calendar",
     "docs",
     "sheets",
-    "chat",
     "forms",
     "slides",
-    "tasks",
-    "search",
 ]
 set_enabled_tools(all_services)  # Set enabled services for scopes
 set_enabled_tool_names(None)  # Don't filter individual tools - enable all
