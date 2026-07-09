@@ -756,6 +756,8 @@ def require_google_service(
                     f"{service_name}/{service_version} | "
                     f"method={auth_method or 'none'} | {e}"
                 )
+                if os.getenv("WORKSPACE_MCP_RETURN_AUTH_URL_AS_RESULT") == "true" or os.getenv("RENDER") or os.getenv("PORT"):
+                    return str(e)
                 # Re-raise the original error without wrapping it
                 raise
 
@@ -913,6 +915,8 @@ def require_multiple_services(service_configs: List[Dict[str, Any]]):
                                 f"{service_name}/{service_version} | "
                                 f"method={auth_method or 'none'} | {e}"
                             )
+                            if os.getenv("WORKSPACE_MCP_RETURN_AUTH_URL_AS_RESULT") == "true" or os.getenv("RENDER") or os.getenv("PORT"):
+                                return str(e)
                             # Re-raise the original error without wrapping it
                             raise
 

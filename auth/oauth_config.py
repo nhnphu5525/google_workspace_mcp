@@ -33,7 +33,8 @@ class OAuthConfig:
         self.base_url = f"{self.base_uri}:{self.port}"
 
         # External URL for reverse proxy scenarios
-        self.external_url = os.getenv("WORKSPACE_EXTERNAL_URL")
+        ext_url = os.getenv("WORKSPACE_EXTERNAL_URL")
+        self.external_url = ext_url.rstrip("/") if ext_url else None
 
         # OAuth client configuration
         self.client_id = os.getenv("GOOGLE_OAUTH_CLIENT_ID")
