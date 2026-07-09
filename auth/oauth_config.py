@@ -119,7 +119,7 @@ class OAuthConfig:
         explicit_uri = os.getenv("GOOGLE_OAUTH_REDIRECT_URI")
         if explicit_uri:
             return explicit_uri
-        return f"{self.base_url}/oauth2callback"
+        return f"{self.get_oauth_base_url()}/oauth2callback"
 
     @staticmethod
     def _get_redirect_path(uri: str) -> str:
@@ -193,6 +193,7 @@ class OAuthConfig:
         origins = []
 
         # Server's own origin
+        origins.append(self.get_oauth_base_url())
         origins.append(self.base_url)
 
         # VS Code and development origins
